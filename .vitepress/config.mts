@@ -9,6 +9,7 @@ export default defineConfig({
   title: "joey998的博客",
   description: "github，个人博客",
   srcDir: './src',
+  base: '/my-site/',
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
