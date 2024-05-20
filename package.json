@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "@joey998/eslint-plugin-tencent": "^1.0.2",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/parser": "^7.9.0",
+    "vitepress": "^1.2.0"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  }
+}
