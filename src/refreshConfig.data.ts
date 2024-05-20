@@ -1,13 +1,11 @@
 import * as path from 'path';
-import { readFileSync, readdirSync, writeFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { WordMap } from './types'
 
 export default {
-  watch: ['./src/**/*'],
+  // watch: ['./**/*'],
   load(){
-    let viteConfig = readFileSync('./.vitepress/config.mts', 'utf-8');
-    console.log('aaa', viteConfig)
-    // writeFileSync('./.vitepress/config.mts', viteConfig)
+    let viteConfig = readFileSync('../.vitepress/config.mts', 'utf-8');
     return {
       a: 12
     };
@@ -27,8 +25,9 @@ type Sidebar = {
 }
 
 function getRecursiveList(dirAbsolutePath: string, parentName: string){
-  let resArray: Sidebar[] = [] 
-  let items = readdirSync(path.resolve(dirAbsolutePath), {withFileTypes: true});
+  let resArray: Sidebar[] = [];
+  // index.md放到最前面
+  let items = readdirSync(path.resolve(dirAbsolutePath), {withFileTypes: true}).sort((a) => a.name === 'index.md' ? -1 : 1);
   items.map(item => {
     if(item.isDirectory()) {
       resArray.push({
@@ -58,17 +57,15 @@ export function getNavList(dirAbsolutePath: string){
             .map(item => ({ text: WordMap[item.name], link: `/${item.name}` }))
 }
 
-export function getNavAndSideBarInfo(): {navList: Nav[], sideBarList: Sidebar[], sidebarObj: any}{
+export function getNavAndSideBarInfo(): {navList: Nav[],  sidebarObj: any}{
   let prefix = [{text: WordMap.index, link: '/'}];
-  let navList = getNavList(path.resolve(__dirname, 'src'));
-  let sideBarList = getRecursiveList(path.resolve(__dirname, 'src'), '');
+  let navList = getNavList(path.resolve(__dirname, ''));
   let sidebarObj = {};
   navList.forEach(item => {
-    sidebarObj[item.link] = getRecursiveList(path.resolve(__dirname, `src/${item.link}`), item.link);
+    sidebarObj[item.link] = getRecursiveList(path.resolve(__dirname, `.${item.link}`), item.link);
   })
   return {
     navList: prefix.concat(navList),
-    sideBarList,
     sidebarObj,
   }
 }
