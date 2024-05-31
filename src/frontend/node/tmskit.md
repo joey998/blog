@@ -21,6 +21,16 @@ run
 dev:
 使用chokdir库监听每一个modules下面的文件，然后复制文件到sinan/dist下面
 
+钩子：
+beforeNpmInstall
+afterFirstCompile
+updateFile
+beforePreview
+beforeUpload
+
+关于埋点：
+埋点是在钩子afterFirstCompile里面执行的，使用gogocode将文件解析成ast，然后将wxml的bind等代码提取到js或者ts的tmsReportEvent里面
+
 
 
 
