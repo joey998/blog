@@ -55,6 +55,8 @@ onClick.each((e) => {
   clickFnNames.push(handlerName);
 });
 
+let value = clickFnNames.map((name) => `${name} = ${name}.bind(this)`).join(';')
+
 // 替换原有的 constructor，但利用 $$$ 保留原有的参数和语句，只是在最后补上 bind 语句即可
 reactClass.replace(
   'constructor($$$0) { $$$1 }',
@@ -63,3 +65,8 @@ reactClass.replace(
     ${clickFnNames.map((name) => `${name} = ${name}.bind(this)`).join(';')}
   }`,
 );
+
+let result = reactClass.generate()
+
+
+fs.writeFileSync('output2.js', result)

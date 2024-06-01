@@ -1,6 +1,4 @@
-function log(a, b, c) {
-  console.log(a, b, c);
-}
+function testLog(a,b,cs){console.log(a, b, c);}
 
 function alert(a) {
   alert(a);
@@ -24,6 +22,7 @@ class Toggle extends React.Component {
     this.state = { isToggleOn: true };
 
     // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {

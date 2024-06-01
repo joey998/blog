@@ -8,7 +8,13 @@ let ast = gogocode(string) // 生成gogoCode的ast实例
 
 - replaceBy: find之后直接替换
 
--- replace: 找到并替换 ast.replace('const a = $_$value', 'const b = $_$value')
+- replace: 找到并替换 ast.replace('const a = $_$value', 'const b = $_$value')
+
+- append, prepend: 给一个节点的尾部,首部添加node
+
+- after, before: 在一个节点之后,之前添加node
+
+- remove: 移除某个节点
 
 
 
