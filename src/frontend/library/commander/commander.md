@@ -1,7 +1,7 @@
 # commander.js
 
 ## 名词概念
-1. 选项（options）：终端传递的以`-`或者`--`开头的参数。
+1. 选项（option）：终端传递的以`-`或者`--`开头的参数。
 2. 命令（command）：终端可以调用的命令，例如git add .中的add
 3. 子命令(sub-command)：一个独立的文件，名称默认为`主命令文件名称-子命令名称`
 4. 选项参数，命令参数：跟在选项或者命令之后的参数，<>表示必选，[]表示可选，终端没出现该选项名称或者命令名称时候，默认为undefined
@@ -29,7 +29,7 @@ node ./commander.js start clone placeA placeB // 会调用同级目录下面的c
 ```
 const { program } = require('commander'); // program是一个全局的Command实例
 
-program.options("-s --search") // 返回全局Command实例
+program.option("-s --search") // 返回全局Command实例
 .command('commandA")  // 创建一个CommandA实例
 .command('commandB")  // 在CommandA实例下面创建一个新的CommandB实例
 
@@ -41,6 +41,6 @@ program.command('commandC') //在全局Command下面创建一个新的CommandC�
 [具体见官方文档](https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md)
 - option
 - command
-- action 参数为命令的所有参数，外加上解析出来的options和command实例
+- action 参数为命令的所有参数，外加上解析出来的option和command实例
 - version
 - hook
