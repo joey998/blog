@@ -7,7 +7,7 @@
   },
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "node ./src/hooks.js && vitepress build",
+    "docs:build": "node ./src/hooks.js prebuild && vitepress build",
     "docs:preview": "vitepress preview"
   },
   "dependencies": {

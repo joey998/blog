@@ -4,14 +4,15 @@ let { program } = require("commander");
 let { readFileSync, readdirSync, writeFileSync } = require("fs");
 let path = require('path');
 
-program.command('prebuild').description('发布之前执行的hook')
+program.command('prebuild')
+  .description('发布之前执行的hook')
   .action(() => {
     appendJSToMD(__dirname)
   })
 
+program.parse();
 
 function appendJSToMD(dirPath) {
-  console.log(__dirname)
   let currentDirName = path.basename(dirPath)
   let dirInfoList = readdirSync(dirPath, { withFileTypes: true });
   // 该文件夹下面有index.js 或者dirname.js 同时该文件下面有index.md
@@ -41,11 +42,4 @@ function appendJSToMD(dirPath) {
   dirs.forEach(item => {
     appendJSToMD(path.resolve(dirPath, item.name))
   })
-
-
-
-  console.log('dir', dirInfoList);
 }
-
-
-appendJSToMD(__dirname);
