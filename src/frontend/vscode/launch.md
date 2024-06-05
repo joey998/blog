@@ -30,6 +30,15 @@
       "request": "launch",
       "cwd": "${workspaceFolder}/miniprogram/programs/sinan",
       "command": "node ../../../tools/tmskit/src/index.js run dev", // 直接类似终端执行
+    },
+
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "ts调试",
+      "program": "${file}",
+      "preLaunchTask": "tsc build to out", // 需要在.vscode里面新增label为tsc build to out的task
+      "outFiles": ["${fileDirname}/out/**/*.js"]
     }
   ]
 }

@@ -1,5 +1,11 @@
-/** @constructor */
-Person = function () {
+/**
+ * @module PersonModule
+ */
+
+/** 
+ * @constructor
+ */
+function Person() {
   /**
    * @desc: say
    * @returns {string}
@@ -68,9 +74,14 @@ Person.say = function () {
   return "I'm static.";
 }
 
-var p = new Person();
-p.say();      // I'm an instance.
-Person.say(); // I'm static.
-// there is no way to directly access the inner function from here
+/** 
+ * @constructor 
+ * */
+function Person2() {
+  console.log(12)
+}
 
-module.exports = Person
+module.exports = {
+  Person,
+  Person2
+}
