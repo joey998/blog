@@ -18,9 +18,10 @@ const schema = {
 const data = {
   foo: 1,
   bar: "abc",
-  date1: "2019-12-12"
+  date: "2019-12-12"
 }
 
 const validate = ajv.compile(schema)
 const valid = validate(data)
 if (!valid) console.log(validate.errors)
+console.log('hahahahah')
