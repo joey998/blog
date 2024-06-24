@@ -1,7 +1,8 @@
-let { SyncHook, AsyncSeriesHook } = require('tapable');
+let { SyncHook, AsyncSeriesHook, SyncBailHook } = require('tapable');
 
 let syncHook = new SyncHook(['param1', 'param2']);
 let asyncSeriesHook = new AsyncSeriesHook(['param1', 'param2']);
+let syncBailHook = new SyncBailHook(['param1', 'param2']);
 
 syncHook.tap({
   name: '1 third hook',
@@ -62,7 +63,7 @@ asyncSeriesHook.tapAsync({
 asyncSeriesHook.tapPromise({
   name: '3 hook',
   stage: 3
-},  async function (param, other, callback) {
+}, async function (param, other, callback) {
   fetch() // 异步获取些东西
   console.log('3 hook', param, other);
   callback();
@@ -77,10 +78,27 @@ asyncSeriesHook.tapPromise({
 })
 
 // console.log(asyncSeriesHook.callAsync.toString());
-asyncSeriesHook.promise(1111, 2222).then((res) => {
-  console.log('ok', res);
-}).catch(err => console.log('something wrong', err))
+// asyncSeriesHook.promise(1111, 2222).then((res) => {
+//   console.log('ok', res);
+// }).catch(err => console.log('something wrong', err))
 
+
+
+syncBailHook.tap({
+  name: '1 third hook',
+  stage: 1
+}, function (param, other) {
+  console.log('first param2', param, other);
+  return 11
+})
+syncBailHook.tap({
+  name: 'first hook',
+  stage: 11
+}, function (param, other) {
+  console.log('first param', param, other)
+})
+let res = syncBailHook.call('bail', 'bail2');
+console.log(res)
 
 
 
@@ -211,4 +229,26 @@ function anonymous3(param1, param2
     _sync = false;
   }));
 
+}
+
+// bail的hook需要返回undefined才能继续执行，不然直接用返回值结束了
+function syncBailHookFn(param1, param2
+) {
+  "use strict";
+  var _context;
+  var _x = this._x;
+  var _fn0 = _x[0];
+  var _result0 = _fn0(param1, param2);
+  if (_result0 !== undefined) {
+    return _result0;
+    ;
+  } else {
+    var _fn1 = _x[1];
+    var _result1 = _fn1(param1, param2);
+    if (_result1 !== undefined) {
+      return _result1;
+      ;
+    } else {
+    }
+  }
 }
