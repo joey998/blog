@@ -52,7 +52,7 @@
 
   7. 执行`go build`会在当前目录生成hello的二进制文件，可通过命令行`./hello`运行代码
 
-  8. 执行`go install`会将hello文件生成到由`go list -f '{{.Target}}'`返回的目录之中，通过将该目录暴露到PATH，可以在全局直接`hello`执行该二进制程序
+  8. 执行`go install`会将hello文件生成到由`go list -f '\{\{.Target\}\}'`返回的目录之中，通过将该目录暴露到PATH，可以在全局直接`hello`执行该二进制程序
 
 - 一些语法知识
   1. message := fmt.Sprintf("Hi, %v. Welcome!", name)   
