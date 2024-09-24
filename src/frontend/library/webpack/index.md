@@ -1,9 +1,18 @@
+<!--
+ * @Author: tedjmzhang tedjmzhang@tencent.com
+ * @Date: 2024-07-03 18:06:36
+ * @LastEditors: tedjmzhang tedjmzhang@tencent.com
+ * @LastEditTime: 2024-08-12 01:04:44
+ * @FilePath: /code/webpack-org/blog/src/frontend/library/webpack/index.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # webpack 源码解析
 
 ## 带着问题看源码
 1. 如何进行依赖收集，循环依赖如何处理
 2. webpack将源码转换成ast是loader干的活，还是webpack内部干的
-webpack内部原生支持转换javascript（使用acorn作为parser），
+每个模块通过NormalModuleFactory创建的之后，经过this.hook.resolve之后，能够分析出该文件应该使用哪个loader，从而给对应的loader处理，
+webpack内部原生支持转换javascript（使用acorn作为parser）
 3. webpack如此多的hooks都放在了解析的哪一步
 4. webpack的plugins有没有执行顺序，如果有的话，前后那个为准
 
@@ -24,4 +33,11 @@ webpack内部原生支持转换javascript（使用acorn作为parser），
 3. compilation实例添加属性compilation.factorizeQueue=new AsyncQueue()。   
 AsyncQueue：自身包含hooks，例如asyncQueue.hooks.beforeAdd。调用了asyncQueue.add之后会在加上setImmediate(syncQueue._root._ensureProcessing)（事件循环末尾），会遍历syncQueue._children里面的所有child，
 调用child._startProcessing(entry)
-4. setImmediate
+
+
+EntryPlugin是在webpack主函数里面添加的    
+
+一个webpack配置创建一个Compiler实例，然后这个Compiler会生成一个Compilation实例。
+
+
+
