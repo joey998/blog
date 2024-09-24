@@ -1,11 +1,3 @@
-<!--
- * @Author: tedjmzhang tedjmzhang@tencent.com
- * @Date: 2024-08-20 23:03:03
- * @LastEditors: tedjmzhang tedjmzhang@tencent.com
- * @LastEditTime: 2024-08-21 00:22:45
- * @FilePath: /blog/src/frontend/library/vue/index.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 # vue源码解析
 
 - compiler-core   

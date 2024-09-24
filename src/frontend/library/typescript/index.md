@@ -1,11 +1,3 @@
-<!--
- * @Author: tedjmzhang tedjmzhang@tencent.com
- * @Date: 2024-07-03 18:06:36
- * @LastEditors: tedjmzhang tedjmzhang@tencent.com
- * @LastEditTime: 2024-08-24 16:48:08
- * @FilePath: /code/webpack-org/blog/src/frontend/library/typescript/index.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 # typescript
 
 1. declare：因为有一些三方库是使用javascript写的，但是我们要在typescript里面引用该库，
